@@ -1,7 +1,6 @@
-const CiphertextMessage = require('./ciphertext_message');
-const protobufs = require('./protobufs');
+import { CipherTextMessage } from '../Types/CipherTextMessage';
 
-class SenderKeyDistributionMessage extends CiphertextMessage {
+export class SenderKeyDistributionMessage extends CipherTextMessage {
   constructor(
     id = null,
     iteration = null,
@@ -74,5 +73,3 @@ class SenderKeyDistributionMessage extends CiphertextMessage {
     return this.id;
   }
 }
-
-module.exports = SenderKeyDistributionMessage;

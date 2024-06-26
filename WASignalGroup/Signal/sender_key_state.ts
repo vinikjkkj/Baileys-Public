@@ -1,10 +1,9 @@
-const SenderChainKey = require('./sender_chain_key');
-const SenderMessageKey = require('./sender_message_key');
+import { SenderChainKey } from './sender_chain_key';
+import { SenderMessageKey } from './sender_message_key';
 
-const protobufs = require('./protobufs');
-
-class SenderKeyState {
+export class SenderKeyState {
     MAX_MESSAGE_KEYS = 2000;
+    senderKeyStateStructure;
 
     constructor(
         id = null,
@@ -125,5 +124,3 @@ class SenderKeyState {
         return this.senderKeyStateStructure;
     }
 }
-
-module.exports = SenderKeyState;

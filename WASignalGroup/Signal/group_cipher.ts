@@ -1,15 +1,20 @@
-const queue_job = require('./queue_job');
-const SenderKeyMessage = require('./sender_key_message');
-const crypto = require('libsignal/src/crypto');
+import { queueJob } from '../Utils/queue-job'
+import { SenderKeyMessage } from './sender_key_message'
+import * as crypto from 'libsignal/src/crypto'
+import { SignalStorage } from '../Types'
 
-class GroupCipher {
+
+export class GroupCipher {
+  senderKeyStore: SignalStorage;
+  senderKeyName: string;
+  
   constructor(senderKeyStore, senderKeyName) {
     this.senderKeyStore = senderKeyStore;
     this.senderKeyName = senderKeyName;
   }
 
   queueJob(awaitable) {
-    return queue_job(this.senderKeyName.toString(), awaitable)
+    return queueJob(this.senderKeyName.toString(), awaitable)
   }
 
   async encrypt(paddedPlaintext) {

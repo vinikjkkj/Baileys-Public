@@ -1,8 +1,7 @@
-const CiphertextMessage = require('./ciphertext_message');
-const curve = require('libsignal/src/curve');
-const protobufs = require('./protobufs');
+import { CipherTextMessage } from '../Types/CipherTextMessage';
+import * as curve from 'libsignal/src/curve';
 
-class SenderKeyMessage extends CiphertextMessage {
+export class SenderKeyMessage extends CipherTextMessage {
   SIGNATURE_LENGTH = 64;
 
   constructor(
@@ -88,5 +87,3 @@ class SenderKeyMessage extends CiphertextMessage {
     return 4;
   }
 }
-
-module.exports = SenderKeyMessage;

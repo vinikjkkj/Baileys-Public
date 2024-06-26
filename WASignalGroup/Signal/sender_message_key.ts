@@ -1,14 +1,12 @@
-const { deriveSecrets } = require('libsignal/src/crypto');
-class SenderMessageKey {
-    iteration = 0;
+import { deriveSecrets } from 'libsignal/src/crypto'
 
-    iv = Buffer.alloc(0);
+export class SenderMessageKey {
+    iteration: number;
+    iv: Buffer;
+    cipherKey: Buffer;
+    seed: Buffer;
 
-    cipherKey = Buffer.alloc(0);
-
-    seed = Buffer.alloc(0);
-
-    constructor(iteration, seed) {
+    constructor(iteration: number, seed: Buffer) {
         const derivative = deriveSecrets(seed, Buffer.alloc(32), Buffer.from('WhisperGroup'));
         const keys = new Uint8Array(32);
         keys.set(new Uint8Array(derivative[0].slice(16)));
@@ -36,4 +34,3 @@ class SenderMessageKey {
         return this.seed;
     }
 }
-module.exports = SenderMessageKey;
